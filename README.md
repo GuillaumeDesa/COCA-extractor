@@ -349,7 +349,7 @@ The COCA corpus data itself is **not covered by this licence** and is subject to
 If you use this app in research or teaching, a citation would be appreciated:
 
 ```
-[Your Name] (2025). COCA Extractor: a Shiny application for POS-tagged
+Desagulier, Guillaume (2025). COCA Extractor: a Shiny application for POS-tagged
 pattern extraction from COCA. GitHub: https://github.com/YOUR-USERNAME/coca-extractor
 ```
 
