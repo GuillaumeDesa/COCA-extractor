@@ -4,8 +4,6 @@ A Shiny application for extracting POS-tagged patterns from the **Corpus of Cont
 
 > **Corpus required.** This app works with the raw WLP files purchased from Mark Davies at [corpusdata.org](https://www.corpusdata.org/). The corpus is not bundled with this repository and cannot be.
 
----
-
 ## Table of contents
 
 - [Requirements](#requirements)
@@ -25,8 +23,6 @@ A Shiny application for extracting POS-tagged patterns from the **Corpus of Cont
 - [Known limitations](#known-limitations)
 - [Adapting to other corpora](#adapting-to-other-corpora)
 - [Licence](#licence)
-
----
 
 ## Requirements
 
@@ -60,8 +56,6 @@ wlp_web_29.inline.txt      ← web genre, file 29 (no year)
 
 All files for your purchased genres should live in a **single flat folder** — no subfolders. That path is all the app needs.
 
----
-
 ## Installation
 
 No installation in the traditional sense. Download or clone this repository:
@@ -71,8 +65,6 @@ git clone https://github.com/YOUR-USERNAME/coca-extractor.git
 ```
 
 The app is a single self-contained file: `coca_extractor_app.R`.
-
----
 
 ## Launching the app
 
@@ -90,8 +82,6 @@ shiny::runApp("coca_extractor_app.R")
 
 The app opens in your default browser. If it opens in the RStudio viewer pane instead, click **Open in Browser** — the results table and tag guide are more comfortable at full width.
 
----
-
 ## Quick start
 
 1. **Setup tab** → enter your corpus folder path → click *Validate path* → confirm the file count → enter an output folder and filename.
@@ -99,8 +89,6 @@ The app opens in your default browser. If it opens in the RStudio viewer pane in
 3. **Corpus tab** → tick the genres you want → set the year range.
 4. **Extract tab** → verify the preflight checklist is all green → click *Start Extraction*.
 5. **Results tab** → filter, browse, download.
-
----
 
 ## Interface guide
 
@@ -173,8 +161,6 @@ The **Download CSV** button writes the *currently filtered* view (not the full r
 ### Tag Guide
 
 A two-column reference listing all CLAWS7 tags used in COCA with brief descriptions and examples. Available at any time without leaving the app.
-
----
 
 ## Token grammar reference
 
@@ -262,8 +248,6 @@ as/*
 - **Ditto tags** mark multi-word units with a two-digit suffix, e.g. `in_ii31 terms_ii32 of_ii33`. Match on the tag base (`ii`) and the suffix is ignored.
 - The COCA files are lowercased on read, so all matching is effectively case-insensitive regardless of the setting.
 
----
-
 ## Output format
 
 The CSV file is **UTF-8 with BOM** (readable by Excel without encoding issues). Each row is one match.
@@ -279,8 +263,6 @@ The CSV file is **UTF-8 with BOM** (readable by Excel without encoding issues). 
 | `context_full` | *(optional)* Concatenation of left context, match, and right context |
 
 N is set by the *Context words* slider in Setup (default: 15).
-
----
 
 ## How the extraction works
 
@@ -298,8 +280,6 @@ N is set by the *Context words* slider in Setup (default: 15).
 
 7. When the future resolves, a `promises` callback fires in the main session, stores the results in a reactive value, and navigates the UI to the Results tab.
 
----
-
 ## Known limitations
 
 **Speed.** Files are processed sequentially in a single background worker. On a typical laptop, a simple two-token pattern across all genres and all years (≈ 230 files) takes between 5 and 15 minutes depending on pattern complexity and hardware. Per-file parallelisation is planned but not yet implemented.
@@ -314,8 +294,6 @@ The generated regex is shown in the Pattern Builder tab. Advanced users can insp
 **Memory.** Large result sets are held in memory until downloaded. This is rarely an issue in practice, but bear it in mind for very frequent patterns on large genre selections.
 
 **Regex edge cases.** The pattern builder escapes literal word characters, but unusual token inputs (e.g. words containing regex metacharacters) may produce unexpected results. The *Test* button is your first line of defence.
-
----
 
 ## Adapting to other corpora
 
@@ -334,15 +312,11 @@ If your corpus uses a different annotation format or filename convention, you wi
 
 The CLAWS7 tagset and `word_TAG` format are shared with several other corpora, including the British National Corpus (BNC) in its flat-text distribution. Adapting the app for BNC-style files would require only a new `parse_filename()` function and a minor adjustment to `strip_tags()`. Adapting it for corpora in CoNLL-U (dependency annotation) or XML formats would require more substantial changes to the read and search pipeline, as those formats are not amenable to flat-string regex search.
 
----
-
 ## Licence
 
 CC-BY-NC-ND-4.0. See [`LICENSE`](LICENSE) for details.
 
 The COCA corpus data itself is **not covered by this licence** and is subject to the terms of your individual purchase agreement with Mark Davies / Brigham Young University.
-
----
 
 ## Citation
 
@@ -352,8 +326,6 @@ If you use this app in research or teaching, a citation would be appreciated:
 Desagulier, Guillaume (2025). COCA Extractor: a Shiny application for POS-tagged
 pattern extraction from COCA. GitHub: https://github.com/YOUR-USERNAME/coca-extractor
 ```
-
----
 
 ## Acknowledgements
 
